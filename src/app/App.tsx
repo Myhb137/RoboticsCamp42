@@ -21,15 +21,18 @@ export default function App() {
               className="flex items-center gap-4"
             >
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center">
-                  <span className="text-2xl">🇩🇿</span>
+                <div className="w-14 h-14 rounded-lg flex items-center justify-center overflow-hidden border border-cyan-500/30 shadow-[0_0_15px_rgba(34,211,238,0.2)]">
+                  <img src="/logo.png" alt="Robotics Camp Logo" className="w-full h-full object-cover" />
                 </div>
-                <div className="text-right">
-                  <div className="text-sm text-cyan-300" style={{ fontFamily: "'Cairo', sans-serif", fontWeight: 600 }}>
+                <div className="text-right flex flex-col justify-center">
+                  <div className="text-xs md:text-sm text-cyan-300" style={{ fontFamily: "'Cairo', sans-serif", fontWeight: 600 }}>
                     الجمهورية الجزائرية الديمقراطية الشعبية
                   </div>
-                  <div className="text-lg" style={{ fontFamily: "'Cairo', sans-serif", fontWeight: 700 }}>
+                  <div className="text-sm md:text-base font-bold text-white mt-0.5" style={{ fontFamily: "'Cairo', sans-serif" }}>
                     وزارة الشباب والرياضة
+                  </div>
+                  <div className="text-xs md:text-sm text-cyan-100" style={{ fontFamily: "'Cairo', sans-serif", fontWeight: 600 }}>
+                    مديرية الشباب والرياضة لولاية تيبازة
                   </div>
                 </div>
               </div>
