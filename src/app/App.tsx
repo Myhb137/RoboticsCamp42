@@ -29,7 +29,7 @@ export default function App() {
                     الجمهورية الجزائرية الديمقراطية الشعبية
                   </div>
                   <div className="text-sm md:text-base font-bold text-white mt-0.5" style={{ fontFamily: "'Cairo', sans-serif" }}>
-                    وزارة الشباب والرياضة
+                    وزارة الشباب
                   </div>
                   <div className="text-xs md:text-sm text-cyan-100" style={{ fontFamily: "'Cairo', sans-serif", fontWeight: 600 }}>
                     مديرية الشباب والرياضة لولاية تيبازة
@@ -196,12 +196,69 @@ export default function App() {
             </span>
           </motion.h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Three participation category cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
             {[
-              { icon: Users, title: 'العمر', desc: '17 سنة فما فوق' },
+              {
+                icon: Sparkles,
+                titleAr: 'معرض',
+                titleEn: 'Exhibition',
+                desc: 'عرض مشاريع الروبوتيك أمام لجنة الخبراء والجمهور',
+                age: '17 سنة فما فوق',
+                color: 'from-cyan-500 to-blue-600',
+                glow: 'rgba(34,211,238,0.35)'
+              },
+              {
+                icon: Trophy,
+                titleAr: 'مسابقة',
+                titleEn: 'Competition',
+                desc: 'تنافس مع أفضل المواهب في مجال الروبوتيك',
+                age: '17 سنة فما فوق',
+                color: 'from-purple-500 to-pink-600',
+                glow: 'rgba(168,85,247,0.35)'
+              },
+              {
+                icon: Users,
+                titleAr: 'قرية الأطفال',
+                titleEn: "Children's Village",
+                desc: 'بيئة تعليمية ممتعة مخصصة للفئة الشبانية الناشئة',
+                age: '10 - 16 سنة',
+                color: 'from-emerald-500 to-teal-600',
+                glow: 'rgba(16,185,129,0.35)'
+              }
+            ].map((item, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.15 }}
+                whileHover={{ y: -8, boxShadow: `0 24px 48px ${item.glow}` }}
+                className="relative group cursor-default"
+              >
+                <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-10 rounded-2xl blur-xl group-hover:opacity-20 transition-all duration-300`} />
+                <div className="relative bg-gradient-to-br from-slate-900/60 to-slate-800/60 backdrop-blur-sm border border-white/10 rounded-2xl p-8 text-center h-full flex flex-col items-center">
+                  <div className={`w-16 h-16 mx-auto mb-5 bg-gradient-to-br ${item.color} rounded-2xl flex items-center justify-center shadow-lg`}>
+                    <item.icon className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-2xl mb-1" style={{ fontFamily: "'Cairo', sans-serif", fontWeight: 800 }}>
+                    {item.titleAr}
+                  </h3>
+                  <p className="text-sm text-gray-400 mb-3 italic">{item.titleEn}</p>
+                  <p className="text-gray-300 text-sm leading-relaxed mb-4 flex-1">{item.desc}</p>
+                  <span className={`inline-block px-4 py-1 rounded-full text-xs font-bold bg-gradient-to-l ${item.color} text-white shadow`}>
+                    {item.age}
+                  </span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* General eligibility pills */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {[
               { icon: Brain, title: 'الاهتمام', desc: 'مهتم بالروبوتيك والتكنولوجيا' },
-              { icon: Network, title: 'المشاركة', desc: 'فرد أو فريق' },
-              { icon: Sparkles, title: 'المشروع', desc: 'لديك مشروع أو فكرة مبتكرة' }
+              { icon: Network, title: 'المشاركة', desc: 'فردي أو ضمن فريق' }
             ].map((item, idx) => (
               <motion.div
                 key={idx}
@@ -213,9 +270,9 @@ export default function App() {
                 className="relative group"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-blue-600/10 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300" />
-                <div className="relative bg-gradient-to-br from-cyan-950/40 to-blue-950/40 backdrop-blur-sm border border-cyan-500/20 rounded-2xl p-8 text-center h-full">
-                  <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-full flex items-center justify-center">
-                    <item.icon className="w-8 h-8 text-white" />
+                <div className="relative bg-gradient-to-br from-cyan-950/40 to-blue-950/40 backdrop-blur-sm border border-cyan-500/20 rounded-2xl p-6 text-center h-full">
+                  <div className="w-14 h-14 mx-auto mb-4 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-full flex items-center justify-center">
+                    <item.icon className="w-7 h-7 text-white" />
                   </div>
                   <h3 className="text-xl mb-2" style={{ fontFamily: "'Cairo', sans-serif", fontWeight: 700 }}>
                     {item.title}
@@ -245,8 +302,8 @@ export default function App() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
-              { icon: Calendar, title: 'التاريخ', desc: '17 - 21 جوان 2026', color: 'from-cyan-500 to-blue-600' },
-              { icon: MapPin, title: 'المكان', desc: 'تيبازة - القاعة متعددة الرياضات', color: 'from-blue-500 to-purple-600' }
+              { icon: Calendar, title: 'التاريخ', desc: '4 - 9 جويلية 2026', color: 'from-cyan-500 to-blue-600' },
+              { icon: MapPin, title: 'المكان', desc: 'تيبازة', color: 'from-blue-500 to-purple-600' }
             ].map((item, idx) => (
               <motion.div
                 key={idx}
@@ -277,8 +334,8 @@ export default function App() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mt-8 bg-gradient-to-br from-purple-950/40 to-pink-950/40 backdrop-blur-sm border border-purple-500/20 rounded-2xl p-8 text-center"
           >
-            <div className="text-4xl mb-4">🏕️</div>
-            <p className="text-lg text-purple-100">إقامة كاملة وتنظيم رسمي على مدى 5 أيام</p>
+            <div className="text-4xl mb-4">🤖</div>
+            <p className="text-lg text-purple-100">تنظيم رسمي بإشراف جمعية متخصصة في الروبوتيك (روبوتات) على مدى 6 أيام</p>
           </motion.div>
         </div>
       </section>
@@ -364,10 +421,10 @@ export default function App() {
 
           <div className="space-y-4">
             {[
-              { q: 'هل المشاركة فردية أم جماعية؟', a: 'يمكنك المشاركة بشكل فردي أو ضمن فريق' },
-              { q: 'ما هي الشروط للمشاركة؟', a: 'يجب أن يكون عمرك 17 سنة فما فوق ولديك اهتمام بالروبوتيك والتكنولوجيا' },
-              { q: 'هل يجب أن يكون لدي مشروع جاهز؟', a: 'لا، يكفي أن تكون لديك فكرة مبتكرة يمكن تطويرها' },
-              { q: 'هل التسجيل مجاني؟', a: 'نعم، التسجيل مجاني والإقامة مشمولة' }
+              { q: 'ما هي فئات المشاركة المتاحة؟', a: 'ثلاث فئات: المعرض (17+)، المسابقة (17+)، وقرية الأطفال (10-16 سنة)' },
+              { q: 'ما هي شروط المشاركة في قرية الأطفال؟', a: 'خاصة بالفئة العمرية من 10 إلى 16 سنة، لتعلم الروبوتيك في بيئة ممتعة وتفاعلية' },
+              { q: 'هل يجب أن يكون لدي مشروع جاهز؟', a: 'لا، يكفي أن تكون لديك فكرة مبتكرة في مجال الروبوتيك يمكن تطويرها' },
+              { q: 'هل التسجيل مجاني؟', a: 'نعم، التسجيل مجاني والتنظيم على عاتق الجمعية المنظِّمة' }
             ].map((item, idx) => (
               <motion.div
                 key={idx}
@@ -424,7 +481,7 @@ export default function App() {
       {/* Footer */}
       <footer className="py-8 px-4 bg-[#020817] border-t border-cyan-500/20">
         <div className="container mx-auto text-center text-gray-400">
-          <p>المخيم الوطني للأنشطة العلمية - الروبوتيك 2026 © جميع الحقوق محفوظة</p>
+          <p>المخيم الوطني للأنشطة العلمية - روبوتيك تيبازة 2026 © جميع الحقوق محفوظة</p>
         </div>
       </footer>
     </div>
